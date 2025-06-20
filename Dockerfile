@@ -19,6 +19,7 @@ RUN apt-get update && \
     libxcomposite1 \
     libxdamage1 \
     libxrandr2 \
+    libxkbcommon0 \
     xdg-utils \
     --no-install-recommends && \
     apt-get clean && \
