@@ -20,6 +20,9 @@ RUN apt-get update && \
     libxdamage1 \
     libxrandr2 \
     libxkbcommon0 \
+    libxss1 \
+    libxt6 \
+    libXfixes \
     xdg-utils \
     --no-install-recommends && \
     apt-get clean && \
