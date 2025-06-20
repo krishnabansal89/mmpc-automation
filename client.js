@@ -7,6 +7,9 @@ app.use(express.json());
 
 let activeUsers = []; // [{name, email, addedAt, timer}]
 
+process.env.PUPPETEER_CACHE_DIR = '/tmp/.cache/puppeteer';
+
+
 const cookies = [
     {
         "name": "sp_dc",
@@ -63,7 +66,20 @@ app.get("/add-user", async (req, res) => {
 let browser, page;
 
 async function initPuppeteer() {
-    browser = await puppeteer.launch({ headless: false });
+    browser = await puppeteer.launch({
+        headless: true, // Must be true for app hosting
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--disable-gpu',
+            '--disable-web-security',
+            '--disable-features=VizDisplayCompositor'
+        ]
+    });
     page = await browser.newPage();
     await browser.setCookie(...cookies); // Your cookie array
 }
