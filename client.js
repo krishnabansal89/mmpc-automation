@@ -1,9 +1,17 @@
 import express from "express";
 import puppeteer from 'puppeteer';
+import cors from 'cors';
 
 const app = express();
 const PORT = 8080;
 app.use(express.json());
+
+//allow cors for all origins
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+}));
 
 let activeUsers = []; // [{name, email, addedAt, timer}]
 
