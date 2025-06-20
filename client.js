@@ -7,7 +7,6 @@ app.use(express.json());
 
 let activeUsers = []; // [{name, email, addedAt, timer}]
 
-process.env.PUPPETEER_CACHE_DIR = '/tmp/.cache/puppeteer';
 
 
 const cookies = [
